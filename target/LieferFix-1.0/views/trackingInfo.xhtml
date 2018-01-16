@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Sendungsverfolgung</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../WEB-INF/LieferFixTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h2>Sendungsverfolgung</h2>
+
+                <h:form>
+                    <h:outputText value="Sendungsstatus: "/>
+                                       
+                    <br/>
+                    <br/>
+
+                    <br/>
+                    <h:outputText value="Tracking ID: #{shipmentModel.delivery.id}"/>
+                    <br/>
+                    <br/>
+                    <h:outputText value="Barcode: 09134783409437    |||||  ||| |||| ||"/>
+                    <br/>
+                        
+                    <br/>
+                    <br/>
+                    <h:outputText value="Sendungsstatus: #{shipmentModel.delivery.shipmentState}"/>
+                    <br/>
+                    <br/>
+                    <h:outputText value="Empfänger: "/>
+                    <br/>
+                    <br/>
+                    <h:outputText value="Name: #{shipmentModel.delivery.recipent.firstName}
+                                    #{shipmentModel.delivery.recipent.lastName}"/>
+                    <br/>
+                    <h:outputText value="Straße: #{shipmentModel.delivery.recipent.address.street}
+                                  #{shipmentModel.delivery.recipent.address.streetNr}"/>
+                    <br/>
+                    <h:outputText value="Ort: #{shipmentModel.delivery.recipent.address.zipCode}
+                                  #{shipmentModel.delivery.recipent.address.city}"/>
+                    
+                    
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

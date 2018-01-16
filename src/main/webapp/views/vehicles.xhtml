@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Übersicht</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../WEB-INF/LieferFixTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h2>Fahrzeug Übersicht</h2>
+
+                <h:form>
+                    <br/>
+                    <br/>                  
+                    <h:form rendered="#{!customerModel.hasActiveUser()}">
+                        <h:outputText value="Sie müssen sich zuerst einloggen"/>
+                    </h:form>
+                    
+                    <h:form rendered="#{customerModel.hasActiveUser()}">
+                        <h:outputText value="Hallo #{customerModel.userInSession.firstName} 
+                                      #{customerModel.userInSession.lastName} "/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        
+                        <h:dataTable var="v" value="#{companyModel.allVehicles()}"
+                                     cellpadding="5" cellspacing="5">
+                            <h:column>
+                                <f:facet name="header">Fahrzeug Nr.</f:facet>
+                                <h:outputText value="    #{v.id}    "/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Marke</f:facet>
+                                <h:outputText value="#{v.brand} "/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Modell</f:facet>
+                                <h:outputText value="#{v.model} "/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Anschaffungsdatum</f:facet>
+                                <h:outputText value="#{v.registrationDate} "/>
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Versicherungsid</f:facet>
+                                <h:outputText value="#{v.insuranceId} "/>
+                            </h:column>
+                            
+                            
+                        </h:dataTable>
+                    </h:form>
+                    
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

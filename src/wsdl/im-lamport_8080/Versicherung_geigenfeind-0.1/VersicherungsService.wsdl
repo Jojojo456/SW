@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://service.versicherung.sw.othr.de/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="VersicherungsServiceService" targetNamespace="http://service.versicherung.sw.othr.de/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://service.versicherung.sw.othr.de/" elementFormDefault="unqualified" targetNamespace="http://service.versicherung.sw.othr.de/" version="1.0">
+
+  <xs:element name="alleVersicherungen" type="tns:alleVersicherungen"/>
+
+  <xs:element name="alleVersicherungenResponse" type="tns:alleVersicherungenResponse"/>
+
+  <xs:element name="fahrzeugtyp" type="tns:fahrzeugtyp"/>
+
+  <xs:element name="kuendigen" type="tns:kuendigen"/>
+
+  <xs:element name="kuendigenResponse" type="tns:kuendigenResponse"/>
+
+  <xs:element name="leistung" type="tns:leistung"/>
+
+  <xs:element name="mitglied" type="tns:mitglied"/>
+
+  <xs:element name="printLabel" type="tns:printLabel"/>
+
+  <xs:element name="printLabelResponse" type="tns:printLabelResponse"/>
+
+  <xs:element name="versichern" type="tns:versichern"/>
+
+  <xs:element name="versichernResponse" type="tns:versichernResponse"/>
+
+  <xs:element name="versicherung" type="tns:versicherung"/>
+
+  <xs:complexType name="printLabel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:mitglied"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="mitglied">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="Passwort" type="xs:string"/>
+      <xs:element minOccurs="0" name="Name" type="xs:string"/>
+      <xs:element minOccurs="0" name="Nachname" type="xs:string"/>
+      <xs:element minOccurs="0" name="Anrede" type="xs:string"/>
+      <xs:element minOccurs="0" name="Telefonnummer" type="xs:string"/>
+      <xs:element minOccurs="0" name="Mobil" type="xs:string"/>
+      <xs:element minOccurs="0" name="Mail" type="xs:string"/>
+      <xs:element minOccurs="0" name="Strasse" type="xs:string"/>
+      <xs:element minOccurs="0" name="Hausnr" type="xs:string"/>
+      <xs:element minOccurs="0" name="Stadt" type="xs:string"/>
+      <xs:element minOccurs="0" name="PLZ" type="xs:string"/>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="versicherungen" nillable="true" type="tns:versicherung"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="versicherung">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="leistung" type="tns:leistung"/>
+      <xs:element minOccurs="0" name="kfzNummer" type="xs:string"/>
+      <xs:element minOccurs="0" name="typ" type="tns:fahrzeugtyp"/>
+      <xs:element minOccurs="0" name="mitglied" type="tns:mitglied"/>
+      <xs:element name="preis" type="xs:double"/>
+      <xs:element minOccurs="0" name="abschlussdatum" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="leistung">
+    <xs:complexContent>
+      <xs:extension base="tns:generatedIdEntity">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Titel" type="xs:string"/>
+          <xs:element name="Preis" type="xs:double"/>
+          <xs:element minOccurs="0" name="Beschreibung" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="generatedIdEntity">
+    <xs:complexContent>
+      <xs:extension base="tns:singleIdEntity">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType abstract="true" name="singleIdEntity">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="fahrzeugtyp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="titel" type="xs:string"/>
+      <xs:element name="faktor" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="printLabelResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="versichern">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:mitglied"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg2" type="xs:string"/>
+      <xs:element minOccurs="0" name="arg3" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="versichernResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:versicherung"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="alleVersicherungen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:mitglied"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="alleVersicherungenResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:versicherung"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kuendigen">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:versicherung"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kuendigenResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="printLabel">
+    <wsdl:part element="tns:printLabel" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="printLabelResponse">
+    <wsdl:part element="tns:printLabelResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="kuendigenResponse">
+    <wsdl:part element="tns:kuendigenResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alleVersicherungenResponse">
+    <wsdl:part element="tns:alleVersicherungenResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="versichern">
+    <wsdl:part element="tns:versichern" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="alleVersicherungen">
+    <wsdl:part element="tns:alleVersicherungen" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="kuendigen">
+    <wsdl:part element="tns:kuendigen" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="versichernResponse">
+    <wsdl:part element="tns:versichernResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="VersicherungsService">
+    <wsdl:operation name="printLabel">
+      <wsdl:input message="tns:printLabel" name="printLabel">
+    </wsdl:input>
+      <wsdl:output message="tns:printLabelResponse" name="printLabelResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versichern">
+      <wsdl:input message="tns:versichern" name="versichern">
+    </wsdl:input>
+      <wsdl:output message="tns:versichernResponse" name="versichernResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alleVersicherungen">
+      <wsdl:input message="tns:alleVersicherungen" name="alleVersicherungen">
+    </wsdl:input>
+      <wsdl:output message="tns:alleVersicherungenResponse" name="alleVersicherungenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kuendigen">
+      <wsdl:input message="tns:kuendigen" name="kuendigen">
+    </wsdl:input>
+      <wsdl:output message="tns:kuendigenResponse" name="kuendigenResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VersicherungsServiceServiceSoapBinding" type="tns:VersicherungsService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="printLabel">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="printLabel">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="printLabelResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="versichern">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="versichern">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="versichernResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="alleVersicherungen">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="alleVersicherungen">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="alleVersicherungenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="kuendigen">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="kuendigen">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="kuendigenResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VersicherungsServiceService">
+    <wsdl:port binding="tns:VersicherungsServiceServiceSoapBinding" name="VersicherungsServicePort">
+      <soap:address location="http://im-lamport:8080/Versicherung_geigenfeind-0.1/VersicherungsService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Neues Label</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="../WEB-INF/LieferFixTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <h2>Label</h2>
+
+
+                <h:form>
+                    <h:outputText value ="Label Informationen: " />
+                    <br/>
+                    <br/>
+                    
+                    <h:form rendered="#{!mailModel.hasLabel()}">
+                        
+                        <h:outputText value="Keine Label informationen verfügbar!"/>
+                        <br/>
+                        
+                    </h:form>
+                    
+                    <h:form  rendered="#{mailModel.hasLabel()}">
+                        
+                       
+                        <br/>
+                        <h:outputText value="Tracking ID: #{mailModel.newDelivery.id}"/>
+                        <br/>
+                        <br/>
+                        <h:outputText value="Barcode: 09134783409437    |||||  ||| |||| ||"/>
+                        <br/>
+                        
+                        <h:outputText value="Preis: #{mailModel.newDelivery.price} €"/>
+                        <br/>
+                        <h:outputText value="Typ: #{mailModel.newDelivery.type}"/>
+                        <br/>
+                        
+                        <br/>
+                        <h:outputText value="Sender Information" />
+                        <br/>
+                        <br/>
+                        <h:outputText value="Vorname: #{mailModel.newDelivery.sender.firstName}"/>
+                        <br/>
+                        <h:outputText value="Nachname: #{mailModel.newDelivery.sender.lastName}"/>
+                        <br/>
+                        <h:outputText value="Firma: #{mailModel.newDelivery.sender.companyName}"/>
+                        <br/>
+                        <h:outputText value="Straße: #{mailModel.newDelivery.sender.address.street}"/>
+                        <br/>
+                        <h:outputText value="Hausnummer: #{mailModel.newDelivery.sender.address.streetNr}"/>
+                        <br/>
+                        <h:outputText value="Postleitzahl: #{mailModel.newDelivery.sender.address.zipCode}"/>
+                        <br/>
+                        <h:outputText value="Stadt: #{mailModel.newDelivery.sender.address.city}"/>
+                        <br/>
+                        <h:outputText value="E-mail: #{mailModel.newDelivery.sender.email}"/>
+                        <br/>
+                        <h:outputText value="Telefonnr.: #{mailModel.newDelivery.sender.phoneNumber}"/>
+                        <br/>
+                       
+                        <br/>
+                        <br/>
+                        <h:outputText value="Empfänger Informationen:" />
+                        <br/>
+                        <br/>
+                        <h:outputText value="Vorname: #{mailModel.newDelivery.recipent.firstName}"/>
+                        <br/>
+                        <h:outputText value="Nachname: #{mailModel.newDelivery.recipent.lastName}"/>
+                        <br/>
+                        <h:outputText value="Firma: #{mailModel.newDelivery.recipent.companyName}"/>
+                        <br/>
+                        <h:outputText value="Straße: #{mailModel.newDelivery.recipent.address.street}"/>
+                        <br/>
+                        <h:outputText value="Hausnummer: #{mailModel.newDelivery.recipent.address.streetNr}"/>
+                        <br/>
+                        <h:outputText value="Postleitzahl: #{mailModel.newDelivery.recipent.address.zipCode}"/>
+                        <br/>
+                        <h:outputText value="Stadt: #{mailModel.newDelivery.recipent.address.city}"/>
+                        <br/>
+                        
+                    </h:form>
+
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
